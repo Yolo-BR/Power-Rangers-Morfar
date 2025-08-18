@@ -18,15 +18,9 @@ while True:
         mp_desenho_postura.draw_landmarks(frame, results.pose_landmarks, mp_postura.POSE_CONNECTIONS)
         if pontos_pose:
             for id, coord in enumerate(pontos_pose.landmark):
-                if id == 23:
-                    coord_cintura_esq_x = coord.x
-                    coord_cintura_esq_y = coord.y
-                elif id == 24:
+                if id == 24:
                     coord_cintura_dir_x = coord.x
                     coord_cintura_dir_y= coord.y
-                elif id == 11:
-                    coord_ombro_esq_x = coord.x
-                    coord_ombro_esq_y = coord.y
                 elif id == 12:
                     coord_ombro_direito_x = coord.x
                     coord_ombro_direito_y = coord.y
@@ -35,25 +29,8 @@ while True:
                 elif id == 25:
                     coord_joelho_direito_x = coord.x
                     coord_joelho_direito_y = coord.y
-                elif id == 26:
-                    coord_joelho_esquerdo_x = coord.x
-                    coord_joelho_esquerdo_y = coord.y
-            # Ângulo da Coluna
-            a = math.sqrt(pow(((coord_joelho_direito_x - coord_cintura_dir_x) + (coord_joelho_esquerdo_x - coord_cintura_esq_x))/2,2) + pow(((coord_joelho_direito_y - coord_cintura_dir_y) + (coord_joelho_esquerdo_y - coord_cintura_dir_y))/2,2))
-            b = math.sqrt(pow(((-coord_ombro_direito_x + coord_cintura_dir_x) + (-coord_ombro_esq_x + coord_cintura_esq_x))/2,2)+ pow(((-coord_ombro_direito_y + coord_cintura_dir_y) + (-coord_ombro_esq_y + coord_cintura_dir_y))/2,2))
-            c = math.sqrt(pow(((+coord_ombro_direito_x - coord_joelho_direito_x) + (+coord_ombro_esq_x - coord_joelho_esquerdo_x))/2,2)+ pow(((+coord_ombro_direito_y - coord_joelho_direito_y) + (+coord_ombro_esq_y - coord_joelho_esquerdo_y))/2,2))
-             # a é a distância do joelho ao quadril, b o quadril ao ombro, e c o ombro ao joelho
-            cos =  (((c*c)-(a*a)-(b*b))/(-2*a*b))
-            #cos é o ângulo formado pela coluna e os joelhos
-            graus = math.acos(cos)*(180/math.pi)
-            nota_coluna = (1- abs(cos))*10
-            #a nota da coluna é avaliada através do cosseno da diferença entre o módulo do cosseno do ângulo ontido e o módulo do cosseno do ângulo ideal (90°)
-            cv.putText(frame, "Graus: " + str(int(graus)) + " (coluna) ", (25, 40), cv.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv.LINE_AA, False)
-            cv.putText(frame, "Nota:" + str(int(nota_coluna)), (25, 80), cv.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv.LINE_AA,False)
-            if ( (graus < 85) or ( graus > 105) ):
-                cv.putText(frame, "Postura Ruim", (25, 120), cv.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv.LINE_AA,False)
-            else:
-                cv.putText(frame, "Postura Boa", (25, 120), cv.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv.LINE_AA,False)
+                elif id == 
+                
             if cv.waitKey(1) == 32:
                 break
         cv.imshow("Video", frame)
