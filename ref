@@ -29,7 +29,6 @@ while True:
                 elif id == 25:
                     coord_joelho_direito_x = coord.x
                     coord_joelho_direito_y = coord.y
-                elif id == 
                 
             if cv.waitKey(1) == 32:
                 break
